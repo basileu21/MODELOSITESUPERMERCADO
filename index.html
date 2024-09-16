@@ -144,9 +144,10 @@
 
         <section id="cart">
             <h2>Carrinho de Compras</h2>
-            <form id="cart-form" action="https://api.whatsapp.com/send" method="get" target="_blank">
+            <form id="cart-form">
                 <textarea id="cart-details" name="text" placeholder="Seu carrinho está vazio..." readonly></textarea>
-                <button type="button" onclick="submitCart()">Enviar ORÇAMENTO pelo WhatsApp</button>
+                <button type="button" onclick="submitCart('budget')">Enviar ORÇAMENTO pelo WhatsApp</button>
+                <button type="button" onclick="submitCart('order')">Finalizar Compra</button>
             </form>
         </section>
         
@@ -164,7 +165,6 @@
                 </div>
                 <label for="address">Endereço para Entrega:</label>
                 <textarea id="address" name="address" placeholder="Digite seu endereço para entrega" rows="4"></textarea>
-                <button type="button" onclick="submitCart()">Finalizar Compra</button>
             </form>
         </section>
     </main>
@@ -193,15 +193,21 @@
             cartDetails.value = cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n');
         }
 
-        function submitCart() {
+        function submitCart(type) {
             const paymentMethod = document.getElementById('payment-method').value;
             const address = document.getElementById('address').value;
-            let message = `*Carrinho de Compras:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
-            if (paymentMethod === 'pix') {
-                message += `\n\n**Chave PIX:** rafaelbasileu7@gmail.com`;
-            }
-            if (address) {
-                message += `\n\n**Endereço para Entrega:** ${address}`;
+
+            let message;
+            if (type === 'budget') {
+                message = `*Orçamento:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}`;
+            } else if (type === 'order') {
+                message = `*Pedido:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
+                if (paymentMethod === 'pix') {
+                    message += `\n\n**Chave PIX:** rafaelbasileu7@gmail.com`;
+                }
+                if (address) {
+                    message += `\n\n**Endereço para Entrega:** ${address}`;
+                }
             }
 
             // Redireciona para o WhatsApp com a mensagem
