@@ -1,0 +1,133 @@
+/* Geral */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4; /* Cor de fundo padrão */
+    background-image: url('images/fundo.jpg'); /* Caminho para a imagem de fundo */
+	background-size: cover;
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+}
+
+header {
+    text-align: center; /* Centraliza o conteúdo do cabeçalho */
+    padding: 2px; /* Adiciona algum espaçamento ao redor do conteúdo do cabeçalho */
+    background: rgba(51, 51, 51, 0.8); /* Fundo semi-transparente para contraste */
+    color: #fff;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 1rem;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center; /* Centraliza os cartões no contêiner */
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: calc(33% - 1rem); /* Ajuste para 33% menos o espaço do gap */
+    max-width: 200px; /* Limita a largura máxima dos cartões */
+    text-align: center; /* Centraliza o texto dentro do cartão */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Limita a altura máxima das imagens */
+    object-fit: cover; /* Ajusta a imagem para cobrir o espaço sem deformar */
+    display: block; /* Remove o espaço extra abaixo da imagem */
+}
+
+.product-info {
+    padding: 1rem;
+}
+
+.product-info h4 {
+    margin: 0.5rem 0;
+}
+
+.product-info p {
+    margin: 0.5rem 0;
+}
+
+button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #555;
+}
+
+#cart-form {
+    margin-top: 1rem;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer .social-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer .social-links a:hover {
+    text-decoration: underline;
+}
+
+/* Detalhes do PIX */
+#pix-details {
+    margin-top: 1rem;
+}
