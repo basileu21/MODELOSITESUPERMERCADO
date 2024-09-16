@@ -145,6 +145,9 @@
         <section id="cart">
             <h2>Carrinho de Compras</h2>
             <form id="cart-form">
+                <div id="cart-items">
+                    <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+                </div>
                 <textarea id="cart-details" name="text" placeholder="Seu carrinho está vazio..." readonly></textarea>
                 <button type="button" onclick="submitCart('budget')">Enviar ORÇAMENTO pelo WhatsApp</button>
                 <button type="button" onclick="submitCart('order')">Finalizar Compra</button>
@@ -189,18 +192,32 @@
             updateCartDetails();
         }
 
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCartDetails();
+        }
+
         function updateCartDetails() {
+            const cartItemsContainer = document.getElementById('cart-items');
             const cartDetails = document.getElementById('cart-details');
-            cartDetails.value = cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n');
+            
+            cartItemsContainer.innerHTML = cartItems.map((item, index) => `
+                <div class="cart-item">
+                    <span>${item.product} - R$ ${item.price.toFixed(2)}</span>
+                    <button onclick="removeFromCart(${index})">Remover</button>
+                </div>
+            `).join('');
+
+            cartDetails.value = cartItems.length > 0 ? cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n') : 'Seu carrinho está vazio...';
         }
 
         function submitCart(type) {
             const paymentMethod = document.getElementById('payment-method').value;
             const address = document.getElementById('address').value;
-            const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
 
+            const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
             if (type === 'order' && totalAmount < MINIMUM_ORDER_AMOUNT) {
-                alert(`O valor mínimo para entrega é R$ ${MINIMUM_ORDER_AMOUNT.toFixed(2)}. Adicione mais itens ao seu carrinho.`);
+                alert(`O valor mínimo de compra para entrega é R$ ${MINIMUM_ORDER_AMOUNT.toFixed(2)}.`);
                 return;
             }
 
