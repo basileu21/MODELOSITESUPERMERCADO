@@ -199,18 +199,18 @@
 
             let message;
             if (type === 'budget') {
-                message = `*Orçamento:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}`;
+                message = `*Pedido de Orçamento:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}`;
             } else if (type === 'order') {
-                message = `*Pedido:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
+                message = `*Pedido Solicitatado e Está em Separação!*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
                 if (paymentMethod === 'pix') {
                     message += `\n\n**Chave PIX:** rafaelbasileu7@gmail.com`;
                 }
                 if (address) {
                     message += `\n\n**Endereço para Entrega:** ${address}`;
                 }
+                message += `\n\nEfetue o pagamento e aguarde a confirmação do pedido. Obrigado!`;
             }
 
-            // Redireciona para o WhatsApp com a mensagem
             window.open(`https://api.whatsapp.com/send?phone=5519998249223&text=${encodeURIComponent(message)}`, '_blank');
         }
 
