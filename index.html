@@ -159,14 +159,14 @@
             <form id="payment-form">
                 <label for="payment-method">Método de Pagamento:</label>
                 <select id="payment-method" name="payment-method">
+                    <option value="pix">PIX</option>
                     <option value="credit-card">Cartão de Crédito</option>
                     <option value="debit-card">Cartão de Débito</option>
-                    <option value="pix">PIX</option>
                 </select>
                 <div id="pix-details" style="display: none;">
                     <p><strong>Chave PIX:</strong> rafaelbasileu7@gmail.com</p>
                 </div>
-                <label for="address">Endereço para Entrega:</label>
+                <label for="address">Endereço para Entrega com ponto de referencia:</label>
                 <textarea id="address" name="address" placeholder="Digite seu endereço para entrega" rows="4"></textarea>
             </form>
         </section>
@@ -174,7 +174,7 @@
 
     <footer>
         <p>&copy; 2024 Supermercado Inovador. Todos os direitos reservados.</p>
-        <p>Rua Exemplo, 123, Bairro, Cidade - Estado</p>
+        <p>Rua Jose Paiva, 152, Bairro-Ayrton Senna, Cidade-Colatina ES -</p>
         <p>Email: contato@supermercadoinovador.com.br</p>
         <div class="social-links">
             <a href="https://www.facebook.com/profile.php?id=100037715648824" target="_blank">Facebook</a>
@@ -233,7 +233,7 @@
                 if (address) {
                     message += `\n\n**Endereço para Entrega:** ${address}`;
                 }
-                message += `\n\nEfetue o pagamento e aguarde a confirmação do pedido. Obrigado!`;
+                message += `\n\nEfetue o pagamento e aguarde a confirmação do seu pedido. Obrigado!`;
             }
 
             window.open(`https://api.whatsapp.com/send?phone=5519998249223&text=${encodeURIComponent(message)}`, '_blank');
