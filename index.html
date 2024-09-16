@@ -176,7 +176,7 @@
         <div class="social-links">
             <a href="https://www.facebook.com/profile.php?id=100037715648824" target="_blank">Facebook</a>
             <a href="https://www.instagram.com/orbdosn/" target="_blank">Instagram</a>
-            <a href="https://api.whatsapp.com/send?phone=551998249223" target="_blank">WhatsApp</a>
+            <a href="https://api.whatsapp.com/send?phone=5519998249223" target="_blank">WhatsApp</a>
         </div>
     </footer>
 
@@ -198,14 +198,14 @@
             const address = document.getElementById('address').value;
             let message = `*Carrinho de Compras:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
             if (paymentMethod === 'pix') {
-                message += `\n\n**Chave PIX:** rafaelbasileu7@gmail`;
+                message += `\n\n**Chave PIX:** rafaelbasileu7@gmail.com`;
             }
             if (address) {
                 message += `\n\n**Endereço para Entrega:** ${address}`;
             }
 
             // Redireciona para o WhatsApp com a mensagem
-            window.open(`https://api.whatsapp.com/send?phone=551998249223&text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=5519998249223&text=${encodeURIComponent(message)}`, '_blank');
         }
 
         document.getElementById('payment-method').addEventListener('change', function () {
