@@ -182,6 +182,7 @@
 
     <script>
         let cartItems = [];
+        const MINIMUM_ORDER_AMOUNT = 50.00;  // Valor mínimo de compra para entrega
 
         function addToCart(product, price) {
             cartItems.push({ product, price });
@@ -196,12 +197,19 @@
         function submitCart(type) {
             const paymentMethod = document.getElementById('payment-method').value;
             const address = document.getElementById('address').value;
+            const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
 
-            let message;
+            if (type === 'order' && totalAmount < MINIMUM_ORDER_AMOUNT) {
+                alert(`O valor mínimo para entrega é R$ ${MINIMUM_ORDER_AMOUNT.toFixed(2)}. Adicione mais itens ao seu carrinho.`);
+                return;
+            }
+
+            let message = '';
+
             if (type === 'budget') {
                 message = `*Pedido de Orçamento:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}`;
             } else if (type === 'order') {
-                message = `*Pedido Solicitatado e Está em Separação!*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
+                message = `*Pedido Solicitado:*\n\n${cartItems.map(item => `${item.product} - R$ ${item.price.toFixed(2)}`).join('\n')}\n\n*Forma de Pagamento:* ${paymentMethod}`;
                 if (paymentMethod === 'pix') {
                     message += `\n\n**Chave PIX:** rafaelbasileu7@gmail.com`;
                 }
